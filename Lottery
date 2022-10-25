@@ -1,0 +1,85 @@
+import java.util.*;
+public class Lottery {
+
+    static int guess[] = new int[3], actual[]= new int[3]; // using global array variables for simplicity
+    
+    public static void main(String args[])
+    {
+        lottery(); // user prompt
+        generateLottery();
+        System.out.println("You guess: "+guess[0]+" "+guess[1]+" "+guess[2]);
+        System.out.println("The winning numbers are "+actual[0]+" "+actual[1]+" "+actual[2]);
+        compare();
+    }
+
+    private static void lottery() // Prompt for the beginning of the game & gets user guesses
+    {
+        Scanner console = new Scanner(System.in);
+        System.out.println("Lottery game, please choose three numbers");
+        System.out.println("ranging from 0 to 9: ");
+        // System.out.println("Enter first number:");
+        guess[0] = validateInput(console);
+        // System.out.println("Enter second number:");
+        guess[1] = validateInput(console);
+        // System.out.println("Enter third number:");
+        guess[2] = validateInput(console);
+    }
+
+    private static void generateLottery() // generates the random numbers
+    {
+        Random r = new Random(); 
+        actual[0] = r.nextInt(10);
+        actual[1] = r.nextInt(10);
+        actual[2]= r.nextInt(10);
+    }
+
+    private static void compare() // compares guesses with randomly generated picks
+    {   
+        if(guess[0]==actual[0] && guess[1]==actual[1] && guess[2]==actual[2]) // exact match
+        {
+            System.out.println("Three matches in exact order! You win $1,000,000");
+            return;
+        }
+        int count = 0;
+        for(int i=0;i<=2;i++) // checks each of the 3 digits
+        {
+            for(int x=0;x<=2;x++)
+            {
+                if (actual[i]==guess[x]) // accomodates repeating digits
+                {
+                    count++;
+                    guess[x]=-1;
+                    break;
+                }
+            }
+        }
+        switch(count)
+                {
+        case 0:System.out.println("Sorry better luck next time."); break;
+        case 1:System.out.println("One match. You win $10."); break;
+        case 2:System.out.println("You made two matches. You win $100."); break;
+        case 3:System.out.println("You matched all three. You win $1,000.");break;
+                }
+    }
+    
+     public static int validateInput(Scanner console) // ensures input is valid integer 0-9
+    {
+        int x = 0;
+        
+        while (!console.hasNextInt()) // checks if the input isn't an integer
+        {
+            System.out.println("Wrong Input.");
+            System.out.println("Enter integer 0-9.");
+            console.next();
+        }
+        x = console.nextInt();
+        
+        while ( x > 9 || x < 0) // ensures the input is an integer between 0-9
+        {
+            System.out.println("Number out of range. Enter integer 0-9 only.");
+            x = console.nextInt();
+        }
+        
+        return x; // returns the input integer x
+    }
+}
