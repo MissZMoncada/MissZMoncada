@@ -1,0 +1,81 @@
+public class Stairs
+{
+    public static int STEPS = 5; // constant for number of stair steps
+    public static void main(String[] args) 
+    {
+        // int step;
+        int starVoid = 1; // helps us increment amount of empty space after the person
+        for (int step = STEPS; step >= 1; step--) // Starts at top decrementing spaces
+        {
+            // Creates the head portion
+            for (int spaces = step; spaces > 0; spaces--) // adds spacing before the head
+            {
+                blankSpace();
+            }
+            head(); // prints head itself
+            for (int starspace = 1; starspace < starVoid; starspace++) // prints spacing after head.
+            {
+                blankSpace();
+            }
+            System.out.println("*");
+            
+            // Creates the arms & torso
+            for (int spaces = step; spaces > 0; spaces--) // prints spacing before arms
+            {
+                blankSpace();
+            }
+            arms(); 
+            for (int starspace = 1; starspace < starVoid; starspace++) // prints spacing after arms
+            {
+                blankSpace();
+            }
+            System.out.println("*");
+            
+            // Creates the legs
+            for (int spaces = step; spaces > 0; spaces--) // prints spacing before legs
+            {
+                blankSpace();
+            }
+            legs(); // draws the legs themselves
+            for (int starspace = 1; starspace < starVoid; starspace++) // prints spacing after legs
+            {
+                blankSpace();
+            }
+            System.out.println("*"); // prints last star for the wall.
+            
+            starVoid++; // increases amount of space after the person for the next cycle.
+        }
+        
+        // prints bottom line of stars:
+        blankSpace(); 
+        for (int bottomLine = 1; bottomLine <= STEPS; bottomLine++)
+        {
+            // System.out.print("******");
+            sixStars();
+        }
+        System.out.print("*");
+    }
+
+    public static void head() // creates the head
+    {
+        // System.out.print(" O  ******"); 
+        System.out.print(" O  ");
+        sixStars();
+    }
+    public static void arms() // creates the arms & torso
+    {
+        System.out.print("/|\\ *     ");
+    }
+    public static void legs() // creates the legs
+    {
+        System.out.print("/ \\ *     ");
+    }
+    public static void blankSpace() // prints empty space equal to 5 spaces
+    {
+        System.out.print("     ");   
+    }
+    public static void sixStars() // prints 6 stars
+    {
+        System.out.print("******");
+    }
+}
