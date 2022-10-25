@@ -1,0 +1,75 @@
+import java.util.*;
+public class Quiz
+{
+    public static void main(String[]args){
+        //counters
+        int correctAnswer = 0;
+        int wrongAnswers = 0;
+        //scanner for input options
+        Scanner scan = new Scanner(System.in);
+        //questions array
+        String[] questions = new String[] {"What speed can you drive in a residential area?:",
+                                       "At an unmarked crosswalk, you must:",
+                                       "If you litter on the roadside, you are subject to a fine of:",
+                                       "While driving in fog, you should use your:",
+                                       "You can make a left turn on a red light:",
+                                       "What is the first thing you should do during an enforcement stop?:",
+                                       "You’re approaching a flashing red light at an intersection. Cars on the cross street don’t have a light. What should you do?",
+                                       "You are driving on the highway and wish to pass the vehicle in front of you. What is the first thing you should do?",
+                                       "What should you do at a yellow traffic light?",
+                                       "How is your following distance determined?"
+                                    };
+        
+        //possible answers array
+        String[] possAnswers = new String[] {"a. 25 Mph     b. 55 Mph      c. 35 Mph",
+                                             "a. Speed up   b. Yield the right-of-way to pedestrians    c. Completely stop",
+                                             "a. $10        b. $1,500       c. $1,000",
+                                             "a. Low-beam headlights    b. Disco lights     c. Hazard lights",
+                                             "a. Never      b. Only from a one-way street onto a one-way street     c. Two-way traffic onto two-way traffic",
+                                             "a. Scream and drive away  b. Stop in the middle of the road   c. Turn on your right turn signal",
+                                             "a. Stop completely and drive ahead when you can safely do so   b. Stop and give the right of way only to the vehicle on your right    c. Keep going. Stops are for solid red lights.",
+                                             "a. Honk your horn to keep from surprising the driver      b. Check to see if everything is clear      c. Shake your arm out the window.",
+                                             "a. Slam on the brakes     b. Speed up to cross before the light turns red     c. Stop if it’s safe to do so.",
+                                             "a. Counting seconds from when the driver in front of you passes an object until you pass it       b. Observing how long it takes the person behind you to pass the object you just went by        c. Observing how long it takes you to get close to the vehicle in front of you."
+                                            } ;
+        //answers array 
+        String[] correctAnswers = new String[] {"a","b", "c", "a", "b", "c", "a", "b", "c", "a"};
+        //questions loop  
+ 
+            for (int i=0; i<questions.length;i++){
+                
+                System.out.println(questions[i]);
+                System.out.println(possAnswers[i]);
+                System.out.print("Please choose an answer: ");
+                String answer = scan.next().toLowerCase();
+                
+                while (!answer.equals("a") && !answer.equals("b") && !answer.equals("c")){
+                    System.out.println();
+                    System.out.println("Please choose a validate answer");
+                    System.out.println(questions[i]);
+                    System.out.println(possAnswers[i]);
+                    System.out.print("Please choose an answer: ");
+                    answer = scan.next().toLowerCase();
+                
+                }
+                    
+                if (answer.equals(correctAnswers[i])) { //if correct answer is selected
+                    System.out.println("Congrats you answer is correct");
+                    correctAnswer++;
+                } else { //if wrong answer is selected
+                    
+                    System.out.println("Your answer is incorrect.");
+                    System.out.println("The correct answer is " + correctAnswers[i]);
+                    wrongAnswers++;
+                }
+                
+                
+               
+               System.out.println();
+            }
+        //print out the total correct and wrong answers
+        System.out.println("You have " + correctAnswer + " correct answers.");
+        System.out.println("You have " + wrongAnswers + " wrong answers.");
+   
+   }
+}
